@@ -1,5 +1,4 @@
-//https://rickandmortyapi.com/documentation
-// https://rickandmortyapi.com/api/character
+// https://invoice-generator.com/#/1
 document.addEventListener('DOMContentLoaded', function(){ 
     var app = new Vue({
         el: '#invoice-app',
