@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Invoice Builder</title>
+    <!-- development version, includes helpful console warnings -->
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+    <!-- production version, optimized for size and speed -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
+    
+</head>
+<body>
+    <div class="page-container">
+        <!-- <div id="skip-navigation">
+            <a href="#main-content">Skip to content</a>
+            <a href="#main-navigation">Skip to navigation</a>
+            <a href="#accessibility-settings">Accessibility settings</a>
+        </div> -->
+        <main class="main-content">
+            <div id="invoice-app">
+                <table>
+                    <thead>
+                        <th>Product</th>
+                        <th>Price/unite</th>
+                        <th>Quantity</th>
+                        <th>Total</th>
+                    </thead>
+                    <tr v-for="product in products">
+                        <td><input v-model="product.description" /></td>
+                        <td>{{ invoiceCurrency }}<input type="number" min="0" v-model="product.price" /></td>
+                        <td><input type="number" min="0" v-model="product.quantity" /></td>
+                        <td>{{ invoiceCurrency }} {{ product.price * product.quantity | currency }}</td>
+                    </tr>
+                </table>
+                <button v-on:click="addNewProduct">Add a product</button>
+                <p>Total: {{ invoiceCurrency }} {{ grandTotal | currency }}</p>
+            </div>
+        </main>
+    </div>
+    <script src="content/js/customs/app.js"></script>
+</body>
+</html>
