@@ -7,7 +7,7 @@
     <title>Invoice Builder</title>
     <!-- development version, includes helpful console warnings -->
     <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
-    <!-- production version, optimized for size and speed -->
+    <!-- itemion version, optimized for size and speed -->
     <!-- <script src="https://cdn.jsdelivr.net/npm/vue"></script> -->
     
 </head>
@@ -20,22 +20,48 @@
         </div> -->
         <main class="main-content">
             <div id="invoice-app">
+                <div>
+                    <label for="currency-picker">Change currency:</label>
+                    <select id="currency-picker" v-model="invoiceCurrency">
+                        <option v-for="currency in currencies" :value="currency">{{ currency }}</option>
+                    </select>
+                </div>
                 <table>
                     <thead>
-                        <th>Product</th>
+                        <th>No</th>
+                        <th>item</th>
                         <th>Price/unite</th>
                         <th>Quantity</th>
                         <th>Total</th>
                     </thead>
-                    <tr v-for="product in products">
-                        <td><input v-model="product.description" /></td>
-                        <td>{{ invoiceCurrency }}<input type="number" min="0" v-model="product.price" /></td>
-                        <td><input type="number" min="0" v-model="product.quantity" /></td>
-                        <td>{{ invoiceCurrency }} {{ product.price * product.quantity | currency }}</td>
+                    <tr v-for="(item, index) in items">
+                        <td>{{ index + 1 }}</td>
+                        <td><input v-model="item.description" /></td>
+                        <td>{{ invoiceCurrency }}<input type="number" min="0" v-model="item.price" /></td>
+                        <td><input type="number" min="0" v-model="item.quantity" /></td>
+                        <td>{{ invoiceCurrency }} {{ item.price * item.quantity | currency }}</td>
+                        <td><button v-on:click="deleteItem(index)">Delete item</button></td>
                     </tr>
                 </table>
-                <button v-on:click="addNewProduct">Add a product</button>
-                <p>Total: {{ invoiceCurrency }} {{ grandTotal | currency }}</p>
+                <button v-on:click="addNewItem">Add a item</button>
+                <table>
+                    <tr>
+                        <td>Subtotal</td>
+                        <td>{{ invoiceCurrency }} {{ subTotal | currency }}</td>
+                    </tr>
+                    <tr>
+                        <td>Discount <input type="number" min="0" v-model="discountRate" />%</td>
+                        <td>{{ invoiceCurrency }} {{ discountTotal | currency }}</td>
+                    </tr>
+                    <tr>
+                        <td>Tax <input type="number" min="0" v-model="taxRate" />%</td>
+                        <td>{{ invoiceCurrency }} {{ taxTotal | currency }}</td>
+                    </tr>
+                    <tr>
+                        <td>Grand Total</td>
+                        <td>{{ invoiceCurrency }} {{ grandTotal | currency }}</td>
+                    </tr>
+                </table>
             </div>
         </main>
     </div>

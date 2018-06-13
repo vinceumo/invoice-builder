@@ -4,27 +4,46 @@ document.addEventListener('DOMContentLoaded', function(){
         el: '#invoice-app',
         data: {
             invoiceCurrency: "£",
-            products: [
-                { description: 'product1', quantity: 1, price: 300 },
-                { description: 'product2', quantity: 1, price: 25 },
-                { description: 'product3', quantity: 1, price: 10 },
-                { description: 'product4', quantity: 3, price: 50 }
+            taxRate: 20,
+            discountRate: 0,
+            items: [
+                { description: 'item1', quantity: 1, price: 300 },
+                { description: 'item2', quantity: 1, price: 25 },
+                { description: 'item3', quantity: 1, price: 10 },
+                { description: 'item4', quantity: 3, price: 50 }
+            ],
+            currencies: [
+                'Euro',
+                'Pound',
+                `Dollar`
             ]
         },
         methods: {
-            addNewProduct: function() {
-                this.products.push(
+            addNewItem: function() {
+                this.items.push(
                     { description: '', quantity: 0, price: 0 }
                 )
+            },
+            deleteItem: function(index) {
+                this.items.splice(index, 1)
             }
         },
         computed: {
-            grandTotal: function() {
-                var total = this.products.reduce(function(accumulator, product) {
-                    return accumulator + (product.price * product.quantity);
+            subTotal: function() {
+                var total = this.items.reduce(function(accumulator, item) {
+                    return accumulator + (item.price * item.quantity);
                 }, 0)
 
                 return total;
+            },
+            discountTotal: function() {
+                return this.subTotal * (this.discountRate / 100);
+            },
+            taxTotal: function() {
+                return (this.subTotal - this.discountTotal) * (this.taxRate / 100);
+            },
+            grandTotal: function() {
+                return (this.subTotal - this.discountTotal) + this.taxTotal;
             }
         },
         filters: {
