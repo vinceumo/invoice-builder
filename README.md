@@ -11,6 +11,7 @@
 * ~~Remove rows~~
 * ~~Get total~~
 * ~~Add VAT~~
-* Change currency
+* ~~Change currency~~
 * ~~Add a discount~~
+* Layout
 

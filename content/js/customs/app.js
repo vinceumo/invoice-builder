@@ -3,29 +3,39 @@ document.addEventListener('DOMContentLoaded', function(){
     var app = new Vue({
         el: '#invoice-app',
         data: {
-            invoiceCurrency: "£",
+            invoiceCurrency: {
+                "symbol": "$",
+                "name": "US Dollar",
+                "symbol_native": "$",
+                "decimal_digits": 2,
+                "rounding": 0,
+                "code": "USD",
+                "name_plural": "US dollars"
+            },
             taxRate: 20,
             discountRate: 0,
             items: [
-                { description: 'item1', quantity: 1, price: 300 },
-                { description: 'item2', quantity: 1, price: 25 },
-                { description: 'item3', quantity: 1, price: 10 },
-                { description: 'item4', quantity: 3, price: 50 }
+                { description: 'Item name', quantity: 0, price: 0 },
+                { description: 'Item name', quantity: 0, price: 0 },
+
             ],
-            currencies: [
-                'Euro',
-                'Pound',
-                `Dollar`
-            ]
+            currencies: currenciesData
+
         },
         methods: {
             addNewItem: function() {
                 this.items.push(
-                    { description: '', quantity: 0, price: 0 }
+                    { description: 'Item name', quantity: 0, price: 0 }
                 )
             },
             deleteItem: function(index) {
                 this.items.splice(index, 1)
+            },
+            decimalDigits: function(value) {
+                return this.invoiceCurrency.symbol + ' ' + value.toFixed(this.invoiceCurrency.decimal_digits);
+            },
+            printInvoice: function() {
+                window.print();
             }
         },
         computed: {
@@ -33,22 +43,19 @@ document.addEventListener('DOMContentLoaded', function(){
                 var total = this.items.reduce(function(accumulator, item) {
                     return accumulator + (item.price * item.quantity);
                 }, 0)
-
                 return total;
             },
             discountTotal: function() {
-                return this.subTotal * (this.discountRate / 100);
+                var total = this.subTotal * (this.discountRate / 100);
+                return total;
             },
             taxTotal: function() {
-                return (this.subTotal - this.discountTotal) * (this.taxRate / 100);
+                var total = (this.subTotal - this.discountTotal) * (this.taxRate / 100);
+                return total;
             },
             grandTotal: function() {
-                return (this.subTotal - this.discountTotal) + this.taxTotal;
-            }
-        },
-        filters: {
-            currency: function(value) {
-                return value.toFixed(2);
+                var total = (this.subTotal - this.discountTotal) + this.taxTotal;
+                return total;
             }
         }
     });
