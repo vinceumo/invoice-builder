@@ -18,6 +18,6 @@
   "background_color": "#faebd7",
   "display": "standalone",
   "orientation": "portrait",
-  "scope": "/vincent-humeau.com/", 
-  "start_url": "/vincent-humeau.com/" 
+  "scope": "/invoice-builder/", 
+  "start_url": "/invoice-builder/" 
 }
