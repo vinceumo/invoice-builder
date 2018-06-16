@@ -81,13 +81,9 @@ table{
     
     tr { 
         border-bottom: 1px solid $grey;
-        // display: flex;
 
         td {
-            //flex-grow: 1;
             padding: 0.5rem 1rem;
-            // display: flex;
-            // align-items: center;
 
             &:nth-child(-n+1){
                 padding-left: 0;
@@ -98,7 +94,14 @@ table{
 
             input {
                 width: 100%;
-                margin-left: 0.5rem;
+            }
+
+            .cell-with-input {
+                display: flex;
+
+                input {
+                    margin: 0 0.2rem;
+                }
             }
         }
     }
@@ -133,8 +136,8 @@ table{
             &:before { 
                 content: attr(data-label);
                 position: absolute;
-                top: 6px;
-                left: 6px;
+                top: 0.5rem;
+                left: 0;
                 width: 35%; 
                 padding-right: 10px; 
                 white-space: nowrap;

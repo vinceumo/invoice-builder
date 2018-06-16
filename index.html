@@ -37,7 +37,7 @@
                     <tr v-for="(item, index) in items">
                         <td data-label="No">{{ index + 1 }}</td>
                         <td data-label="Item"><input type="text" v-model="item.description" /></td>
-                        <td data-label="Price/unite">{{ invoiceCurrency.symbol }} <input type="number" min="0" v-model="item.price" /></td>
+                        <td data-label="Price/unite"><div class="cell-with-input">{{ invoiceCurrency.symbol }} <input type="number" min="0" v-model="item.price" /></div></td>
                         <td data-label="Quantity"><input type="number" min="0" v-model="item.quantity" /></td>
                         <td data-label="Total">{{ decimalDigits(item.price * item.quantity) }}</td>
                         <td class="text-right"><button class="is-danger" v-on:click="deleteItem(index)">Delete item</button></td>
@@ -50,11 +50,11 @@
                         <td>{{ decimalDigits(subTotal) }}</td>
                     </tr>
                     <tr>
-                        <td>Discount <input class="text-right" type="number" min="0" max="100" v-model="discountRate" />%</td>
+                        <td><div class="cell-with-input">Discount <input class="text-right" type="number" min="0" max="100" v-model="discountRate" />%</div></td>
                         <td>{{ decimalDigits(discountTotal) }}</td>
                     </tr>
                     <tr>
-                        <td>Tax <input class="text-right" type="number" min="0" max="100" v-model="taxRate" />%</td>
+                        <td><div class="cell-with-input">Tax <input class="text-right" type="number" min="0" max="100" v-model="taxRate" />%</div></td>
                         <td>{{ decimalDigits(taxTotal) }}</td>
                     </tr>
                     <tr class="text-bold">
