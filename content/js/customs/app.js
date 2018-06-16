@@ -1,4 +1,3 @@
-// https://invoice-generator.com/#/1
 document.addEventListener('DOMContentLoaded', function(){ 
     var app = new Vue({
         el: '#invoice-app',
@@ -19,8 +18,13 @@ document.addEventListener('DOMContentLoaded', function(){
                 { description: 'Item name', quantity: 0, price: 0 },
 
             ],
-            currencies: currenciesData
-
+            currencies: currenciesData,
+            company: {
+                name: 'Your company name',
+                contact: 'Your address\nYour tel\nYour email'
+            },
+            client: 'Client information',
+            invoiceDate: ''
         },
         methods: {
             addNewItem: function() {
@@ -36,6 +40,11 @@ document.addEventListener('DOMContentLoaded', function(){
             },
             printInvoice: function() {
                 window.print();
+            },
+            adjustTextAreaHeight: function(event){
+                var el = event.target;
+                el.style.height = "1px";
+                el.style.height = (25+el.scrollHeight)+"px";
             }
         },
         computed: {
