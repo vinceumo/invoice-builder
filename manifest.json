@@ -1,0 +1,23 @@
+{
+  "name": "Invoice Builder - PWA - Vue js",
+  "short_name": "Invoice",
+  "lang": "en-GB",
+  "icons": [
+    {
+        "src": "dist/img/android-chrome-192x192.png",
+        "sizes": "192x192",
+        "type": "image/png"
+    },
+    {
+        "src": "dist/img/android-chrome-512x512.png",
+        "sizes": "512x512",
+        "type": "image/png"
+    }
+],
+  "theme_color": "#faebd7",
+  "background_color": "#faebd7",
+  "display": "standalone",
+  "orientation": "portrait",
+  "scope": "/vincent-humeau.com/", 
+  "start_url": "/vincent-humeau.com/" 
+}

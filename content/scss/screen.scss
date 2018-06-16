@@ -1,0 +1,225 @@
+//vendors
+@import "vendors/bootstrap-reboot";
+@import "vendors/family";
+
+$red: #ff5f6d;
+$yellow: #ffc371;
+$green: #81cf71;
+$white: #faebd7;
+$grey:  darken($white, 10%);
+
+body {
+    background: linear-gradient(to right, $red, $yellow);
+}
+
+.main-content {
+    min-height: 100vh;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @media print {
+        align-items: flex-start;
+    }
+}
+
+
+#invoice-app {
+    background-color: $white;
+    padding: 2rem;
+    border-radius: 0.5rem;
+}
+
+.header {
+    @media (min-width: 761px) {
+        display: flex;
+    }
+
+    > div {
+        &:nth-child(-n+1){
+            @media (min-width: 761px) {
+                order: 1;
+                flex: 1;
+                text-align: right;
+                padding-left: 1rem;
+            }
+        }
+    }
+}
+
+.section-spacer {
+    margin: 1rem 0;
+}
+
+input, select, textarea {
+    background-color: transparentize($color: white, $amount: 0.7);
+    border: none;
+    display: inline-block;
+    transition: background-color 0.3s ease-in-out;
+    width: 100%;
+
+    &:focus {
+        outline-color: $yellow;
+        background-color: transparentize($color: white, $amount: 0.4);
+    }
+
+    &:hover {
+        background-color: transparentize($color: white, $amount: 0.5);
+    }
+
+    @media print {
+        background-color: transparent;
+    }
+
+    @media only screen and (min-width: 761px) {
+        width: auto;
+    }
+}
+
+textarea {
+    width: 100%;
+    min-height: 80px;
+}
+
+select {
+    @media 
+    only screen and (max-width: 760px) {
+        width: 100%;
+    }
+
+    @media print {
+        appearance: none;
+    }
+}
+
+.company-name {
+    font-size: 2rem;
+}
+
+table{
+    width: auto; 
+    border-collapse: collapse; 
+    margin: 2rem 0;
+    
+    thead{
+        th {
+            padding: 0.5rem 1rem;
+
+            &:nth-child(-n+1){
+                padding-left: 0;
+            }
+            &:nth-last-child(-n+1){
+                padding-right: 0;
+            }
+        }
+    }
+    
+    tr { 
+        border-bottom: 1px solid $grey;
+
+        td {
+            padding: 0.5rem 1rem;
+
+            &:nth-child(-n+1){
+                padding-left: 0;
+            }
+            &:nth-last-child(-n+1){
+                padding-right: 0;
+            }
+
+            input {
+                width: 100%;
+            }
+
+            .cell-with-input {
+                display: flex;
+
+                input {
+                    margin: 0 0.2rem;
+                }
+            }
+        }
+    }
+}
+
+.responsive-table {
+    width: 100%;
+    @media 
+    only screen and (max-width: 760px) {
+
+        table, thead, tbody, th, td, tr { 
+            display: block; 
+        }
+
+        thead tr { 
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+        }
+
+        tr {
+            padding: 2rem 0;
+        }
+
+        
+        td[data-label] {
+            position: relative;
+            padding-left: 40%; 
+            display: flex;
+            align-items: center;
+
+            &:before { 
+                content: attr(data-label);
+                position: absolute;
+                top: 0.5rem;
+                left: 0;
+                width: 35%; 
+                padding-right: 10px; 
+                white-space: nowrap;
+                font-weight: bold;
+            }
+        }
+    }
+}
+
+button {
+    background-color: $green;
+    border: none;
+    border-radius: 100px;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+
+    &:focus {
+        outline-color: $yellow;
+        background-color: darken($color: $green, $amount: 7%);
+    }
+
+    &:hover {
+        background-color: darken($color: $green, $amount: 5%);
+    }
+
+    @media print {
+        display: none;
+    }
+
+    &.is-danger{
+        background-color: $red;
+
+        &:focus {
+            background-color: darken($color: $red, $amount: 7%);
+        }
+    
+        &:hover {
+            background-color: darken($color: $red, $amount: 5%);
+        }
+    }
+}
+
+.text-right {
+    text-align: right;
+}
+
+.text-bold {
+    font-weight: bold;
+}
