@@ -1,17 +1,5 @@
-# Invoice builder
+# Invoice builder - PWA - Vue js
 
-## Goals
+Small project to play around with service workers and vue js.
 
-* Learn basic vue.js
-
-## Todo
-
-* ~~Set up basic invoice generator~~
-* ~~Add rows~~
-* ~~Remove rows~~
-* ~~Get total~~
-* ~~Add VAT~~
-* ~~Change currency~~
-* ~~Add a discount~~
-* Layout
-
+http://vinceumo.github.io/invoice-builder
